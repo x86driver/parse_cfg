@@ -8,6 +8,6 @@ char *endptr;
 %%
 #.*            ;
 w              { return CHGPAGE; }
->              { return INC; }
+[^>]              { printf("yeah %s\n", yytext); return INC; }
 ([0-9]|[a-fA-F]){2}    { yylval = strtol(yytext, &endptr, 16); return NUMBER; }
 %%
