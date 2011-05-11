@@ -8,7 +8,7 @@ uint32_t idx = 0;
 
 %token CHGPAGE INC NUMBER ENDCMD
 %%
-statement:      CHGPAGE NUMBER NUMBER NUMBER ENDCMD {
+statement:      CHGPAGE NUMBER NUMBER NUMBER {
                     printf("w %d %d %d\n", $2, $3, $4);
                     if ($2 != 0x30) {
                         printf("Syntax error la: %d\n", $2);
@@ -21,7 +21,7 @@ statement:      CHGPAGE NUMBER NUMBER NUMBER ENDCMD {
         | inc_state
         ;
 
-inc_state:     INC NUMBER ENDCMD {
+inc_state:     INC INC {
 //                    printf("[%d][%d] = %d\n", page, idx++, $2);
                     printf("heyinc %d %d\n", $1, $2);
                }
