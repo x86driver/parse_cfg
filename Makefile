@@ -4,10 +4,8 @@ all:$(TARGET)
 
 parse:parse.l parse.y
 	flex parse.l
-	bison -d parse.y
-	gcc lex.yy.c -c -o parsel.o
-	gcc parse.tab.c -c -o parsey.o
-	gcc -o parse parsel.o parsey.o -ll
+	yacc -d parse.y
+	gcc -g -DYYDEBUG=1 -o $@ y.tab.c lex.yy.c -ly -ll
 
 clean:
-	rm -rf $(TARGET)
+	rm -rf $(TARGET) *.o

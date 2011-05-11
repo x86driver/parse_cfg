@@ -2,3 +2,4 @@ lex.yy.c
 parse
 *.o
 parse.tab.*
+y.tab.*
