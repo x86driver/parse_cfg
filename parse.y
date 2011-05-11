@@ -6,25 +6,23 @@ uint32_t page = 0;
 uint32_t idx = 0;
 %}
 
-%token CHGPAGE INC NUMBER
+%token CHGPAGE INC NUMBER ENDCMD
 %%
-statement:      CHGPAGE NUMBER NUMBER NUMBER {
+statement:      CHGPAGE NUMBER NUMBER NUMBER ENDCMD {
                     printf("w %d %d %d\n", $2, $3, $4);
                     if ($2 != 0x30) {
-                        printf("Syntax error\n");
-                        return;
+                        printf("Syntax error la: %d\n", $2);
                     }
                     if ($3 == 0x0) {    /* select page */
                         page = $4;
                         idx = 1;
-                        return;
                     }
                 }
         | inc_state
         ;
 
-inc_state:     INC NUMBER   {
+inc_state:     INC NUMBER ENDCMD {
 //                    printf("[%d][%d] = %d\n", page, idx++, $2);
-                    printf("inc %d\n", $2);
+                    printf("heyinc %d %d\n", $1, $2);
                }
         ;

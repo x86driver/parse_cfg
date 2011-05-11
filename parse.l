@@ -7,7 +7,8 @@ char *endptr;
 
 %%
 #.*            ;
-w              { return CHGPAGE; }
-[^>]              { printf("yeah %s\n", yytext); return INC; }
-([0-9]|[a-fA-F]){2}    { yylval = strtol(yytext, &endptr, 16); return NUMBER; }
+^w              { printf("%s: ", yytext); return CHGPAGE; }
+^>           { printf("%s: ", yytext); return INC; }
+([0-9]|[a-fA-F]){2}    { yylval = strtol(yytext, &endptr, 16); printf("digit: %X\n", yylval); return NUMBER; }
+\n      { return ENDCMD; }
 %%
