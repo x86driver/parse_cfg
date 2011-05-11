@@ -21,8 +21,8 @@ statement:      CHGPAGE NUMBER NUMBER NUMBER {
         | inc_state
         ;
 
-inc_state:     INC INC {
+inc_state:     INC {
 //                    printf("[%d][%d] = %d\n", page, idx++, $2);
-                    printf("heyinc %d %d\n", $1, $2);
+                    printf("heyinc %d\n", $1);
                }
         ;
