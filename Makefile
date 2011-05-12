@@ -8,4 +8,4 @@ parse:parse.l parse.y
 	gcc -g -DYYDEBUG=1 -o $@ y.tab.c lex.yy.c -ly -ll
 
 clean:
-	rm -rf $(TARGET) *.o
+	rm -rf $(TARGET) *.o lex.yy.c y.tab.*
